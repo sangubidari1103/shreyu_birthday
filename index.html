@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Shreyu ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at center, #111122, #050510);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;   /* allow vertical scroll */
+}
+
+/* Section spacing */
+section {
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+/* Fade animation */
+.fade {
+    animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Glowing Name */
+.glow-name {
+    font-size: 42px;
+    color: #ff4e88;
+    text-shadow:
+        0 0 10px #ff4e88,
+        0 0 20px #ff4e88,
+        0 0 40px #ff4e88;
+}
+
+/* Neon Input */
+input {
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 2px solid #ff4e88;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #ff4e88;
+    width: 250px;
+}
+
+input:focus {
+    box-shadow: 0 0 20px #ff4e88, 0 0 40px #ff4e88;
+    transform: scale(1.05);
+}
+
+/* Neon Button */
+button {
+    padding: 14px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #ff4e88;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #ff4e88, 0 0 30px #ff4e88;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ff4e88, 0 0 50px #ff4e88;
+}
+
+/* Letter */
+#letterSection {
+    display: none;
+    max-width: 700px;
+    margin: auto;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Video */
+#videoSection {
+    display: none;
+}
+
+video {
+    width: 95%;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255,78,136,0.6);
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    animation: float 6s linear infinite;
+    color: #ff4e88;
+    text-shadow: 0 0 10px #ff4e88;
+}
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+
+/* Sparkle Particles */
+.particle {
+    position: fixed;
+    background: #ff4e88;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sparkle 4s linear infinite;
+}
+@keyframes sparkle {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<section id="loginSection" class="fade">
+    <h1 class="glow-name">Hey Shreyu ❤️</h1>
+    <p>Enter the date when our heart got connected❤️...</p>
+    <input type="text" id="password" placeholder="Type here...">
+    <br><br>
+    <button onclick="checkPassword()">Unlock 💖</button>
+</section>
+
+<section id="letterSection" class="fade"></section>
+
+<section id="videoSection" class="fade">
+    <h1 class="glow-name">Happy Birthday, Shreyu ❤️</h1>
+    <video controls autoplay>
+        <source src="surprise.mp4" type="video/mp4">
+    </video>
+</section>
+
+<audio id="bgMusic" src="music.mp3"></audio>
+
+<script>
+var correctPassword = "16/07/2022"; // 🔐 CHANGE THIS
+
+function checkPassword() {
+    var entered = document.getElementById("password").value;
+
+    if (entered === correctPassword) {
+        document.getElementById("loginSection").style.display = "none";
+        startExperience();
+    } else {
+        alert("Not quite right 😏");
+    }
+}
+
+function startExperience() {
+    var music = document.getElementById("bgMusic");
+    music.volume = 0.4;
+    music.play();
+
+    var letter = "From the moment you entered my life, everything became brighter. " +
+    "You are my peace, my happiness, and my favorite person in this world. " +
+    "Today is all about you, and I just want you to feel how deeply special you are to me ❤️";
+
+    var i = 0;
+    var speed = 35;
+    var letterSection = document.getElementById("letterSection");
+    letterSection.style.display = "block";
+
+    function typeWriter() {
+        if (i < letter.length) {
+            letterSection.innerHTML += letter.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            showVideo();
+        }
+    }
+
+    typeWriter();
+}
+
+function showVideo() {
+    var music = document.getElementById("bgMusic");
+    music.pause();
+    music.currentTime = 0;
+
+    document.getElementById("videoSection").style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+/* Floating Hearts */
+setInterval(function() {
+    var heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(function() { heart.remove(); }, 6000);
+}, 600);
+
+/* Sparkle Particles */
+setInterval(function() {
+    var particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * window.innerWidth + "px";
+    particle.style.width = particle.style.height = (Math.random() * 6 + 3) + "px";
+    document.body.appendChild(particle);
+    setTimeout(function() { particle.remove(); }, 4000);
+}, 300);
+
+</script>
+
+</body>
+</html>
